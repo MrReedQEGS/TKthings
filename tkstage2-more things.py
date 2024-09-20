@@ -7,6 +7,7 @@ class Application(tk.Frame):
         tk.Frame.__init__(self,master)  #call parent constructor
         self.grid()  #necessary to make it appear on the screen!
         self.createWidgets()
+        self.config(cursor="circle")
         
     def createWidgets(self):
         #Add stuff to my application
@@ -17,10 +18,17 @@ class Application(tk.Frame):
         self.quitButton.grid(column = 1,row=0,padx=20,pady=20)
     
     def myTest(self):
-        print("In here")
+        if(self.cursorType == "arrow"):
+            self.cursorType = "watch"
+        else:
+            self.cursorType = "arrow"
+            
+        self.config(cursor=self.cursorType)
         
     def myQuit(self):
         quit()
+        
+    cursorType = "arrow"
         
 app = Application()
 app.master.title("TK Helloworld")
