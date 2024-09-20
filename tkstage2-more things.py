@@ -10,7 +10,8 @@ class Application(tk.Frame):
         
     def createWidgets(self):
         #Add stuff to my application
-        self.testButton = tk.Button(self,text="Test",command=self.myTest)
+        #bg is background colour
+        self.testButton = tk.Button(self,text="Test",bg="#00ff00",command=self.myTest)
         self.quitButton = tk.Button(self,text="Quit",command=self.myQuit)
         self.testButton.grid(column = 0,row=0,padx=20,pady=20) #places the button on the app frame
         self.quitButton.grid(column = 1,row=0,padx=20,pady=20)
