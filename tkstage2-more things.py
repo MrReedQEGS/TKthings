@@ -1,6 +1,6 @@
 #Stage 2 - more things
 import tkinter as tk
-import random
+import random,sqlite3
 
 CANVAS_BORDER = 5
 
@@ -17,11 +17,32 @@ class Application(tk.Frame):
         #bg is background colour
         #canvas bd is border width for canvas
         self.testButton = tk.Button(self,text="Test",bg="#00ff00",command=self.myTest)
+        self.dbTest = tk.Button(self,text="Test DB",bg="#aa00ff",command=self.myDBTest)
         self.quitButton = tk.Button(self,text="Quit",command=self.myQuit)
+        
         self.canvas1 = tk.Canvas(self,height=100,width=60,bd=CANVAS_BORDER,relief=tk.RIDGE)
         self.testButton.grid(column = 0,row=0,padx=20,pady=20) #places the button on the app frame
-        self.quitButton.grid(column = 1,row=0,padx=20,pady=20)
+        self.dbTest.grid(column = 1,row=0,padx=20,pady=20)
+        self.quitButton.grid(column = 2,row=0,padx=20,pady=20)
         self.canvas1.grid(row=2)
+    
+    def create_sqlite_database(self,filename):
+        """ create a database connection to an SQLite database """
+        #https://www.sqlitetutorial.net/sqlite-python/creating-tables/
+        
+        self.dbConn = None
+        try:
+            self.dbConn = sqlite3.connect(filename)
+            print(sqlite3.sqlite_version)
+        except sqlite3.Error as e:
+            print(e)
+        finally:
+            if self.dbConn:
+                self.dbConn.close()
+    
+    def myDBTest(self):
+        print("DB testing...")
+        self.create_sqlite_database("testDB.db")
     
     def myTest(self):
         if(self.cursorType == "hand2"):
@@ -62,6 +83,8 @@ class Application(tk.Frame):
         quit()
         
     cursorType = "hand2"
+    
+    dbConn = None
         
 app = Application()
 app.master.title("TK Helloworld")
