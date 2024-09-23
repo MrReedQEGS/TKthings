@@ -2,6 +2,9 @@
 import tkinter as tk
 import random,sqlite3
 
+#good guide
+#https://github.com/StevePaget/ActivitiesDatabase
+
 CANVAS_BORDER = 5
 
 #Your application must inherit from Frame
