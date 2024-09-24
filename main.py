@@ -1,14 +1,14 @@
 import tkinter as tk
 from tkinter import messagebox
-from page1 import Page1
-from page2 import Page2
+from Page1 import Page1
+from Page2 import Page2
 
 class Main(tk.Tk):
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
         self.geometry("900x600")
         self.title("Main Menu")      
-        self.frames = [ Page1(self), Page2(self)]
+        self.frames = [ Page1(self),Page2(self)]
         self.switchFrame(0)
 
     def switchFrame(self, frameNum):
